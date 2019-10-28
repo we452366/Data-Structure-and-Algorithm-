@@ -45,7 +45,7 @@
 |θ|Θ|theta|渐进紧密界|
 |ω|Ω|omega|渐进下界|
 > 算法通常执行时间是一个区域，算法的执行时间，空间消耗，会随着输入规模的变化而变化，我们用下面的术语来描述着中变化的关系：O 表示渐进上界；Θ 表示渐进紧密界；Ω 表示渐进下界；
-![time.jpg](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572243842837&di=ae509fac58f86cce831d5382cf22920b&imgtype=jpg&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D3401546999%2C1738676424%26fm%3D214%26gp%3D0.jpg)
+![time.jpg](day01/img/timg.jpg)
 
 - 复杂度分析举例
 - 递归结构的分析方法
