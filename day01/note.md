@@ -59,7 +59,7 @@
 > 循环不变式：每次循环结束，存在一个已经排序的列表和一个未排序的列表，存在一个变量j，指向下一个未排序的数字
 
 ```
-    function insertion_sort(A){
+    function insert_sort(A){
         for(
             let j=1;                    // 1
             j<A.length;                 // N
@@ -86,6 +86,83 @@
 > 合：合并子问题的解
 
 代表：归并排序、快速排序
+
+- 归并排序：
+
+```
+    const SENTINEL=Number.MAX_SAFE_INTEGER;
+
+    function divide(p,r){
+        return Math.floor((p+r)/2)
+    }
+
+    function conquer(A,p,q,r){
+        const A1=A.slice(p,q);
+        const A2=A.slice(q,r);
+
+        A1.push(SENTINEL);
+        A2.push(SENTINEL);
+
+        for(let k=p,i=0,j=0;k<r;k++){
+            A[k]=A1[i]<A2[i]?A1[i++]:A2[j++]
+        }
+    }
+
+    function merge_sort(A,p=0,r){
+        r=r || A.length;
+        if(r-p===1){return}
+        if(r-p===2){
+            if(A[p]>A[r-1]){
+                [A[p],A[r-1]]=[A[r-1],A[p]]
+            }
+            return
+        }
+
+        const q=divide(p,r);
+        console.log('divide:'+q);
+        merge_sort(A,p,q)
+        merge_sort(A,q,r)
+        conquer(A,p,q,r)
+    }
+```
+
+> divide的时间复杂度：1+2+2^2+2^3+...+2^log(2,N)=1*(1-2^log(2,N+1))/(1-2)=N+1-1=N O(N)
+> conquer的时间复杂度：N*(log(2,N)) O(NlgN)
+> divide&conquer策略的合并排序 O(NlgN)
+
+- 快速排序：
+
+```
+    // i指向最后一个小于支点的数字，j指向未确认的下一个数字 初始值 i=-1,j=0
+    function swap(A,i,j){
+        [A[i],A[j]]=[A[j],A[i]];
+    }
+
+    function divide(A,p,r){
+        const x=A[r-1];
+        let i=p-1;
+        for(let j=p;j<r-1;j++){
+            if(A[j]<x){
+                i++;
+                swap(A,i,j);
+            }
+        }
+        swap(A,i+1,r-1);
+        return i+1;
+    }
+
+    function quick_sort(A,p=0,r){
+        r = typeof r !== 'undefined' ? r : A.length'
+        if(p<r-1){
+            const q=divide(A,p,r);
+            quick_sort(A,p,q);
+            quick_sort(A,q+1,r)
+        }
+    }
+```
+快速排序没有conquer，只是一层一层去divide
+
+> divide的时间复杂度：最坏情况下O(N^2)，如全部倒序反向 最好情况下O(NlgN) 平均时间复杂度O(N)
 
 ### 面试题
 - test01:100w数据随机打乱和排序算法

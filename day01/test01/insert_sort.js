@@ -1,4 +1,4 @@
-function insertion_sort(A){
+function insert_sort(A){
     for(
         let j=1;                    // 1
         j<A.length;                 // N
