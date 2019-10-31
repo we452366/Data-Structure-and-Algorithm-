@@ -152,7 +152,7 @@
     }
 
     function quick_sort(A,p=0,r){
-        r = typeof r !== 'undefined' ? r : A.length'
+        r = typeof r !== 'undefined' ? r : A.length;
         if(p<r-1){
             const q=divide(A,p,r);
             quick_sort(A,p,q);
@@ -167,3 +167,5 @@
 ### 面试题
 - test01:100w数据随机打乱和排序算法
 - test02:大型系统的路由匹配算法
+- test03:实现快速排序
+- test04:实现归并排序
