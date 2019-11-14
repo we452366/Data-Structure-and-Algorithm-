@@ -1,58 +1,58 @@
 const {assert} = require('chai');
-const Stack=require('./stack')
+const Queue=require('./queue')
 
 describe('测试链接',()=>{
-    it('LIFO',()=>{
-        const s =new Stack(1000)
+    it('FIFO',()=>{
+        const q =new Queue(1000)
         for(let i=1;i<=5;i++){
-            s.push(i)
+            q.enqueue(i)
         }
 
-        for(let i=5;i>=1;i--){
-            assert.equal(s.pop(),i)
+        for(let i=1;i<=5;i++){
+            assert.equal(q.dequeue(),i)
         }
     })
 
-    it('stackoverflow',()=>{
-        const s =new Stack(1000)
+    it('overflow',()=>{
+        const q =new Queue(1000)
         try{
             for(let i=0;i<1001;i++){
-                s.push(i)
+                q.enqueue(i)
             }
         }catch(ex){
             error=ex;
         }
-        assert.equal(error,'stackoverflow')
+        assert.equal(error,'overflow')
     })
 
-    it('stackoverflow-2',()=>{
-        const s =new Stack(1000)
+    it('overflow-2',()=>{
+        const q =new Queue(1000)
         try{
             for(let i=0;i<999;i++){
-                s.push(i)
+                q.enqueue(i)
             }
         }catch(ex){
             error=ex;
         }
-        assert.equal(error,'stackoverflow')
+        assert.equal(error,'overflow')
     })
 
-    it('stackunderflow',()=>{
-        const s=new Stack();
+    it('underflow',()=>{
+        const q=new Queue();
         let error=null;
         try{
-            s.pop()
+            q.dequeue()
         }catch(ex){
             error=ex
         }
-        assert.equal(error,'stackunderflow')
+        assert.equal(error,'underflow')
     })
 
     it('性能测试',()=>{
-        const s=new Stack(1000000);
+        const q=new Queue(1000000);
         const t=new Date().getTime()
         for(let i=0;i<1000000;i++){
-            s.push(i)
+            q.enqueue(i)
         }
 
         assert.equal(
