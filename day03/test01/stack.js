@@ -23,7 +23,7 @@ class Stack{
     }
 
     get length(){
-        return top+1
+        return this.top+1
     }
 }
 
