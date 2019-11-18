@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Question</title>
+</head>
+<body>
+    <h1>路由算法演示:</h1>
+    <h2>我在页面:<span id="page"></span></h2>
+    <h2>正在播放:<span id="animation"></span></h2>
+
+    <button data-goto='a'>去A</button>
+    <button data-goto='b'>去B</button>
+    <button data-goto='c'>去C</button>
+    <button data-goto='d'>去D</button>
+</body>
+<script>
+    function push(link){
+        const PAGE_ODX=Number(localStorage['PAGE_ODX'] || 0);
+        localStorage['PAGE_ODX']=PAGE_ODX+1
+        document.querySelector('#page').innerHTML=link;
+        history.pushState({
+            idx:PAGE_ODX+1,
+        },null,'/'+link);
+        document.querySelector('#animation').innerHTML='正在播放----->';
+        setTimeout(()=>{
+            document.querySelector('#animation').innerHTML='完成'
+        },1000)
+    }
+
+    ([...document.querySelectorAll('button')]).filter(node=>node.attributes['data-goto']).forEach(btn=>{
+        const link =btn.attributes['data-goto'].value
+        btn.addEventListener('click',()=>{
+            push(link)
+        })
+    })
+
+    // 监听onPopState
+    window.onpopstate=function(e){
+        
+        document.querySelector('#page').innerHTML=location.pathname;
+        if(localStorage['PAGE_ODX']<this.history.state.idx){
+            document.querySelector('#animation').innerHTML='正在播放----->';
+        }else{
+            document.querySelector('#animation').innerHTML='正在播放<-----';
+        }
+        
+        setTimeout(()=>{
+            document.querySelector('#animation').innerHTML='完成'
+        },1000);
+        localStorage['PAGE_ORX']=this.history.state.idx;
+    }
+</script>
+</html>

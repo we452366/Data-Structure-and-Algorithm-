@@ -18,7 +18,15 @@ function fib(n){
 }
 
 // 非递归 堆栈
-const Stack=require('../test01/stack')
 function fib(n){
-    const s=new Stack();
+    let stack=[n]
+    while(stack.length){
+        const item=stack.pop();
+        if(item===1 || item===2){
+            stack.push(1)
+        }else{
+            stack.push(item-1);
+            stack.push(item-2);
+        }
+    }
 }
