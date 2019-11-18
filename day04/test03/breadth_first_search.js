@@ -1,4 +1,4 @@
-// 队列广度优先搜索
+// 队列实现广度优先搜索
 function *breath_first_search(node){
     let queue=[node];
     while(queue.length>0){
