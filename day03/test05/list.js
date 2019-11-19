@@ -1,3 +1,4 @@
+require('./itertools')
 /**
  * 链表结点
  */
@@ -36,12 +37,16 @@ class DoubleList{
         this.head=node;
     }
 
-    search(key){
-        let node = this.head;
-        while(node.key !== null && node.key !== key){
-            node=node.next
+    *transverse(){
+        let p=this.head;
+        while(p){
+            yield p
+            p=p.next
         }
-        return node
+    }
+
+    search(key){
+        return this.transverse().find(node=>node.key===key)
     }
 
     delete(node){
