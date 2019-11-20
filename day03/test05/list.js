@@ -1,4 +1,4 @@
-require('./itertools')
+require('../utils/itertools')
 /**
  * 链表结点
  */
