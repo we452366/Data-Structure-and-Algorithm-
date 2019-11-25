@@ -71,6 +71,15 @@
 - Trie树(字典查找)
 - dom结构(文本对象模型)
 
+#### 二叉搜索树(性质)
+- 搜索时间和树的高度成比例
+- 对任何一个节点x，对任何一个x左边的节点y，y.key<=x.key；对任何一个x右边的节点y，y.key>=x.key
+
+#### 遍历的序
+- 中序遍历(inorder) 先遍历x.left再遍历x再遍历x.right，输出了有序列表
+- 前序遍历(preorder) 先x再x.left和x.right
+- 后序遍历(postorder) 先x.left和x.right最后x
+
 ### 图
 
 #### 常见应用
